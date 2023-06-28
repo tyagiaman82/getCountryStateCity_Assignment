@@ -1,0 +1,56 @@
+<div class="content-heading ">
+  Add User
+</div>
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="panel b">
+        <div class="panel-heading  text-bold bg-purple-dark">Add User</div>
+        <div class="panel-body">
+          <form (ngSubmit)="onAddUsers(f)" #f="ngForm">
+            <div class="form-group">
+              <label>First Name*</label>
+              <input class="form-control" type="text" name="name" id="name" [(ngModel)]="this.userDetails.firstname"
+                     placeholder="Enter Name..." required/>
+            </div>
+             <div class="form-group">
+              <label>Select Country*</label>
+              <select class="form-control" type="text" [(ngModel)]="userDetails.countrySelected" (change)="getStates(userDetails.countrySelected)" name="country" id="country" placeholder="Select Country...">
+                <option [ngValue]="null" selected>Select Country</option>
+          <option *ngFor="let country of countries" [(ngValue)]="country.id">
+            {{ country.name }}
+          </option>
+        </select>
+          </div>
+          <div class="form-group">
+            <label>Select State*</label>
+            <select class="form-control" type="text" [(ngModel)]="userDetails.stateSelected" (change)="getCities(userDetails.stateSelected)" name="state" id="state" placeholder="Select State...">
+              <option [ngValue]="null" selected>Select State</option>
+        <option *ngFor="let state of states2" [(ngValue)]="state.id">
+          {{ state.name }}
+        </option>
+      </select>
+        </div>
+        <div class="form-group">
+          <label>Select City*</label>
+          <select class="form-control" type="text" [(ngModel)]="userDetails.citySelected" (change)="checkValid(userDetails.citySelected)" name="city" id="city" placeholder="Select City...">
+            <option [ngValue]="null" selected>Select City</option>
+      <option *ngFor="let city of cities2" [(ngValue)]="city.id">
+        {{ city.name }}
+      </option>
+    </select>
+      </div>
+                
+            <button class="btn btn-danger pull-right s-n-btn" (click)="cancel()">Cancel</button>
+
+            <button class="btn btn-info pull-right" type="submit" [ladda]="isLoading" data-style="expand-right"
+                    data-spinner-color="#000000"
+                    [disabled]="!f.valid">Add User
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
